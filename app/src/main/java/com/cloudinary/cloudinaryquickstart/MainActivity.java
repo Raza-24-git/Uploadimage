@@ -1,5 +1,6 @@
 package com.cloudinary.cloudinaryquickstart;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +13,8 @@ import com.cloudinary.android.callback.UploadCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.widget.Button;
+
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.cloudinary.cloudinaryquickstart.databinding.ActivityMainBinding;
@@ -21,11 +24,11 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String cloudName = "<your_cloud_name>";
+    private String cloudName = "nimg";
     private String url;
-    private String publicId = "<your_public_id>";
+    private String publicId = "9532de8dbf5eea9a359456ceb2ec79";
 
-    private String uploadPreset = "<your_upload_preset>";
+    private String uploadPreset = "selimN";
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -37,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.toolbar.setTitle("Cloudinary Quickstart");
         setSupportActionBar(binding.toolbar);
+
+        Button btnTs = findViewById(R.id.next_page);
+        btnTs.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, MainCloudinary.class);
+            startActivity(intent);
+        });
 
         initCloudinary();
         generateUrl();
@@ -55,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void uploadImage() {
-        Uri uri = Uri.parse("android.resource://com.cloudinary.cloudinaryquickstart/drawable/cloudinary_logo");
+        Uri uri = Uri.parse("android.resource://com.cloudinary.cloudinaryquickstart/drawable/aa");
         MediaManager.get().upload(uri).unsigned(uploadPreset).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {
